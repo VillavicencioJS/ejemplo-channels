@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ejemplo de Django Channels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}" media="screen,projection"/>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <h1 class="center-align">LatinShat</h1>
+      <h2 class="condensed light">Sala: {{ room.label }}</h2>
+      <blockquote>
+        Url del chat:
+        <a href={{ request.scheme }}://{{ request.get_host }}/{{ room.label }}><h6 class="medium italic">{{ request.scheme }}://{{ request.get_host }}/{{ room.label }}</h6></a>
+      </blockquote>
+      <form class="col s6">
+        <div class="row">
+          <div class="input-field col s12">
+            <input class="col s12" id="handle" type="text" placeholder="villavoman">
+            <label for="handle">Nombre de Usuario</label>
+          </div>
+        </div>
+      </form>
+      <form class="col s6" id="chatform">
+        <div class="row">
+          <div class="input-field col s10">
+           <input class="col s10" id="message" type="text" placeholder="Mensaje">
+           <label for="message">Mensaje</label>
+          </div>
+          <div class="input-field col s2">
+            <button class="btn waves-effect waves-light" type="submit" name="action" id="go">Enviar
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <table id="chat" class="striped">
+        <thead>
+          <tr>
+              <th data-field="fecha">Fecha</th>
+              <th data-field="nombre">Nombre</th>
+              <th data-field="mensaje">Mensaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for message in messages %}
+            <tr>
+              <td>{{ message.formatted_timestamp }}</td>
+              <td>{{ message.handle }}</td>
+              <td>{{ message.message }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static "js/jquery-2.1.1.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/chat.js" %}"></script>
+</body>
+</html>
