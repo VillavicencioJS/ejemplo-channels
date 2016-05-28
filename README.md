@@ -8,6 +8,9 @@ Basado en https://blog.heroku.com/archives/2016/3/17/in_deep_with_django_channel
 ### Cree un entorno virtual
 `virtualenv <nombre>`
 
+### Se activa el entorno virtual
+`source <nombre>/bin/activate`
+
 ### Instale los requerimientos
 
 `pip install -r requirements.txt`
@@ -19,7 +22,7 @@ Basado en https://blog.heroku.com/archives/2016/3/17/in_deep_with_django_channel
 `daphne villadevs.asgi:channel_layer --port 8888`
 
 ### Por último se inicia un worker para responder las peticiones puestas en el channel layer
-./manage.py runworker
+`./manage.py runworker`
 
 
 [Cualquier duda con gusto me encuentran en @soybackend :)](https://www.twitter.com/soybackend)
